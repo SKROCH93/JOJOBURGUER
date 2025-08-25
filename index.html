@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Negócio Interativo - JOJO BURGER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F5F2;
+            color: #3D405B;
+        }
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #c0392b;
+            border-bottom-color: #c0392b;
+        }
+        .btn-scenario {
+            transition: all 0.3s;
+        }
+        .btn-scenario.active {
+            background-color: #c0392b;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .burger-new {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .bun-top-new {
+            width: 90%;
+            height: 25%;
+            background: linear-gradient(#e6a053, #d18d42);
+            border-radius: 9999px 9999px 0 0;
+            position: relative;
+            z-index: 6;
+        }
+        .lettuce-new {
+            width: 95%;
+            height: 10%;
+            background: #27ae60;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 5;
+            transform: translateY(-5px);
+        }
+        .cheese-new {
+            width: 85%;
+            height: 12%;
+            background: #f3d97d;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 4;
+            transform: translateY(-8px);
+        }
+        .patty-new {
+            width: 90%;
+            height: 15%;
+            background: #633215;
+            border-radius: 8px;
+            z-index: 3;
+            transform: translateY(-12px);
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+        .bacon-new {
+            width: 85%;
+            height: 8%;
+            background: #922b21;
+            border-radius: 2px;
+            z-index: 2;
+            transform: translateY(-16px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .bun-bottom-new {
+            width: 90%;
+            height: 15%;
+            background: linear-gradient(#d18d42, #b57a34);
+            border-radius: 0 0 10px 10px;
+            z-index: 1;
+            transform: translateY(-20px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="flex justify-center py-6">
+            <img src="imagem/jojo.jpeg" alt="Logotipo JOJO BURGER" class="rounded-lg">
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section class="text-center mb-24">
+            <h2 class="text-6xl md:text-8xl tracking-wide text-gray-800">OUSADIA NA SIMPLICIDADE</h2>
+            <p class="mt-4 text-xl md:text-2xl max-w-3xl mx-auto text-gray-600">A JOJO BURGER redefine a experiência do hambúrguer com uma missão clara: dominar a arte de fazer um único produto com perfeição. Menos é mais quando o foco é 100% na qualidade.</p>
+        </section>
+
+        <section id="conceito" class="mb-24 scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">O Conceito: A Obra-Prima</h2>
+             <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">A alma do nosso negócio é o produto. O "JOJO Burger" não é apenas um lanche, é o resultado de anos de pesquisa e paixão pela gastronomia. Cada componente foi escolhido e aprimorado para criar uma experiência de sabor inesquecível, com a autenticidade do preparo na churrasqueira.</p>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="burger-new mx-auto">
+                        <div class="bun-top-new" title="Pão d'água tostado"></div>
+                        <div class="lettuce-new" title="Alface fresca"></div>
+                        <div class="cheese-new" title="Queijo cremoso derretido"></div>
+                        <div class="patty-new" title="Carne de blend premium"></div>
+                        <div class="bacon-new" title="Bacon defumado e crocante"></div>
+                        <div class="bun-bottom-new" title="Pão d'água tostado"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl mb-4 tracking-wider">Ingredientes da Perfeição</h3>
+                        <ul class="space-y-3">
+                            <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">🍞</span>
+                                <span class="text-xl">Pão d'água tostado</span>
+                            </li>
+                             <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">🥩</span>
+                                <span class="text-xl">Blend premium na churrasqueira</span>
+                            </li>
+                             <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">🧀</span>
+                                <span class="text-xl">Queijo cremoso derretido</span>
+                            </li>
+                             <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">🥓</span>
+                                <span class="text-xl">Bacon defumado e crocante</span>
+                            </li>
+                             <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">🥬</span>
+                                <span class="text-xl">Alface e tomate frescos</span>
+                            </li>
+                             <li class="ingredient-item relative flex items-center">
+                                <span class="text-2xl mr-3">✨</span>
+                                <span class="text-xl">Molho exclusivo do Chef</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="operacao" class="mb-24 scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">A Operação: Eficiência e Qualidade</h2>
+            <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">Nossa operação é desenhada para ser enxuta, eficiente e escalável. O foco em um único produto minimiza o desperdício e otimiza o tempo de preparo, garantindo que cada JOJO Burger chegue perfeito ao cliente. Abaixo estão os pilares da nossa cozinha.</p>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-4xl mb-6 tracking-wider text-center">Equipamentos Essenciais</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🔥</span>
+                        <p class="mt-2 font-semibold">Churrasqueira</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🍳</span>
+                        <p class="mt-2 font-semibold">Chapa de Ferro</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🧊</span>
+                        <p class="mt-2 font-semibold">Geladeira Comercial</p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🔪</span>
+                        <p class="mt-2 font-semibold">Bancada e Utensílios</p>
+                    </div>
+                     <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">💨</span>
+                        <p class="mt-2 font-semibold">Sistema de Exaustão</p>
+                    </div>
+                     <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">📦</span>
+                        <p class="mt-2 font-semibold">Embalagens Térmicas</p>
+                    </div>
+                     <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🧼</span>
+                        <p class="mt-2 font-semibold">Higiene e Limpeza</p>
+                    </div>
+                     <div class="p-4 bg-gray-100 rounded-lg">
+                        <span class="text-4xl">🥤</span>
+                        <p class="mt-2 font-semibold">Estoque de Bebidas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investimento" class="mb-24 scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">Investimento Inicial</h2>
+            <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">O capital inicial para a JOJO BURGER foi calculado para cobrir os custos de instalação, equipamentos e um capital de giro para os primeiros meses. Esta é a estimativa realista para uma operação segura.</p>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th scope="col" class="py-3 px-6 rounded-tl-lg">Descrição</th>
+                                <th scope="col" class="py-3 px-6 rounded-tr-lg text-right">Valor Estimado (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b">
+                                <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">Equipamentos de Cozinha</td>
+                                <td class="py-4 px-6 text-right">R$ 3.950,00 a R$ 12.900,00</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">Capital de Giro (Estoque e custos fixos)</td>
+                                <td class="py-4 px-6 text-right">R$ 9.225,00</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">Aluguel e Depósito de Garantia</td>
+                                <td class="py-4 px-6 text-right">R$ 2.000,00 a R$ 6.000,00</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">Taxas e Licenças</td>
+                                <td class="py-4 px-6 text-right">R$ 500,00 a R$ 2.000,00</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <td class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">Marketing Inicial</td>
+                                <td class="py-4 px-6 text-right">R$ 300,00 a R$ 1.000,00</td>
+                            </tr>
+                            <tr class="bg-gray-100 font-bold">
+                                <td class="py-4 px-6 text-gray-900 rounded-bl-lg">TOTAL ESTIMADO</td>
+                                <td class="py-4 px-6 text-right text-[#c0392b] rounded-br-lg">R$ 15.975,00 a R$ 32.125,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="potencial" class="mb-24 scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">O Potencial: Análise Financeira</h2>
+            <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">A simplicidade do nosso modelo de negócio se traduz em números sólidos. Com custos controlados e uma margem de lucro saudável, a JOJO BURGER demonstra grande viabilidade financeira. Interaja com os cenários abaixo para explorar nosso potencial de faturamento e a estrutura de custos.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-4xl mb-2 tracking-wider">Projeção de Faturamento</h3>
+                    <p class="mb-6 text-gray-600">Selecione um cenário para ver a projeção mensal.</p>
+                    <div class="flex justify-center space-x-2 mb-6">
+                        <button class="btn-scenario text-sm md:text-base bg-gray-200 px-4 py-2 rounded-full" data-scenario="conservador">Conservador</button>
+                        <button class="btn-scenario text-sm md:text-base bg-gray-200 px-4 py-2 rounded-full active" data-scenario="realista">Realista</button>
+                        <button class="btn-scenario text-sm md:text-base bg-gray-200 px-4 py-2 rounded-full" data-scenario="otimista">Otimista</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="faturamentoChart"></canvas>
+                    </div>
+                    <div id="faturamento-info" class="text-center mt-4">
+                        <p class="text-lg">Pedidos/dia: <span id="pedidos-dia" class="font-bold">30</span></p>
+                        <p class="text-2xl">Faturamento Bruto: <span id="faturamento-bruto" class="font-bold text-[#c0392b]">R$ 29.250,00</span></p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                     <h3 class="text-4xl mb-2 tracking-wider">Análise de Lucratividade</h3>
+                     <p class="mb-6 text-gray-600">Veja a distribuição de custos e o lucro líquido mensal.</p>
+                     <div class="flex justify-center space-x-2 mb-6">
+                        <button class="btn-scenario text-sm md:text-base bg-gray-200 px-4 py-2 rounded-full active" data-chart="lucro">Visão Mensal</button>
+                        <button class="btn-scenario text-sm md:text-base bg-gray-200 px-4 py-2 rounded-full" data-chart="custo">Custo por Combo</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="lucratividadeChart"></canvas>
+                    </div>
+                    <div id="lucro-info" class="text-center mt-4">
+                         <p class="text-2xl">Lucro Líquido: <span class="font-bold text-green-600">R$ 5.362,50</span></p>
+                         <p class="text-lg">Margem Líquida: <span class="font-bold">18,3%</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="futuro" class="scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">O Futuro: Marketing e Branding</h2>
+            <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">Nossa presença digital será tão impactante quanto o sabor do nosso hambúrguer. A comunicação será moderna, direta e visualmente atraente para criar desejo e construir uma comunidade de fãs da marca.</p>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <span class="text-5xl">🎨</span>
+                    <h3 class="text-3xl my-3 tracking-wider">Branding Visual</h3>
+                    <p class="text-gray-600">Identidade minimalista e forte. Logo, embalagem e menu digital que refletem a simplicidade e a qualidade premium do produto.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <span class="text-5xl">📱</span>
+                    <h3 class="text-3xl my-3 tracking-wider">Marketing de Conteúdo</h3>
+                    <p class="text-gray-600">Instagram e TikTok como palcos principais. Vídeos "satisfatórios" do preparo para gerar desejo e engajamento.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <span class="text-5xl">🤝</span>
+                    <h3 class="text-3xl my-3 tracking-wider">Parcerias Estratégicas</h3>
+                    <p class="text-gray-600">Foco em micro-influenciadores locais com perfis de "foodies", que geram maior conexão com nosso público-alvo.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-24">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-600">
+            <p class="mt-2">Ousadia na Simplicidade.</p>
+            <p class="text-sm mt-4">&copy; 2025 JOJO BURGER. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // --- Data ---
+            const faturamentoData = {
+                conservador: { pedidos: 15, faturamento: 14625.00 },
+                realista: { pedidos: 30, faturamento: 29250.00 },
+                otimista: { pedidos: 50, faturamento: 48750.00 }
+            };
+
+            const custoComboData = {
+                labels: ['Ingredientes', 'Refrigerante', 'Embalagem'],
+                data: [12.00, 3.00, 1.50],
+                backgroundColor: ['#3D405B', '#81B29A', '#E07A5F']
+            };
+
+            const lucroMensalData = {
+                labels: ['Lucro Líquido', 'Custos Variáveis', 'Custos Fixos'],
+                data: [5362.50, 19687.50, 4200.00],
+                backgroundColor: ['#27ae60', '#E07A5F', '#3D405B']
+            };
+
+            // --- Chart.js Instances ---
+            let faturamentoChart, lucratividadeChart;
+
+            // Faturamento Chart
+            const faturamentoCtx = document.getElementById('faturamentoChart').getContext('2d');
+            faturamentoChart = new Chart(faturamentoCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Conservador', 'Realista', 'Otimista'],
+                    datasets: [{
+                        label: 'Faturamento Bruto (R$)',
+                        data: [
+                            faturamentoData.conservador.faturamento,
+                            faturamentoData.realista.faturamento,
+                            faturamentoData.otimista.faturamento
+                        ],
+                        backgroundColor: ['#E07A5F', '#c0392b', '#81B29A'],
+                        borderRadius: 5,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `R$ ${context.raw.toFixed(2).replace('.', ',')}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'R$ ' + (value / 1000) + 'k';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Lucratividade Chart
+            const lucratividadeCtx = document.getElementById('lucratividadeChart').getContext('2d');
+            function createLucratividadeChart(chartData) {
+                if(lucratividadeChart) {
+                    lucratividadeChart.destroy();
+                }
+                lucratividadeChart = new Chart(lucratividadeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: chartData.labels,
+                        datasets: [{
+                            data: chartData.data,
+                            backgroundColor: chartData.backgroundColor,
+                            borderColor: '#F8F5F2',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '60%',
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    font: { size: 14 }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        const value = context.raw;
+                                        const percentage = ((value / total) * 100).toFixed(1);
+                                        return `${context.label}: R$ ${value.toFixed(2).replace('.', ',')} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            createLucratividadeChart(lucroMensalData);
+
+
+            // --- Interactivity ---
+            const faturamentoButtons = document.querySelectorAll('#potencial .grid:first-child .btn-scenario');
+            const lucroButtons = document.querySelectorAll('#potencial .grid:last-child .btn-scenario');
+            const faturamentoInfo = {
+                pedidosDia: document.getElementById('pedidos-dia'),
+                faturamentoBruto: document.getElementById('faturamento-bruto')
+            };
+            const lucroInfoDiv = document.getElementById('lucro-info');
+
+            // Faturamento buttons logic
+            faturamentoButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    faturamentoButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const scenario = button.dataset.scenario;
+                    const data = faturamentoData[scenario];
+                    
+                    faturamentoInfo.pedidosDia.textContent = data.pedidos;
+                    faturamentoInfo.faturamentoBruto.textContent = `R$ ${data.faturamento.toFixed(2).replace('.', ',')}`;
+                });
+            });
+
+            // Lucratividade buttons logic
+            lucroButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    lucroButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const chartType = button.dataset.chart;
+                    if (chartType === 'custo') {
+                        createLucratividadeChart(custoComboData);
+                        lucroInfoDiv.innerHTML = `<p class="text-2xl">Custo Total: <span class="font-bold text-[#c0392b]">R$ 16,50</span></p><p class="text-lg">Margem Bruta: <span class="font-bold">57,7%</span></p>`;
+                    } else {
+                        createLucratividadeChart(lucroMensalData);
+                        lucroInfoDiv.innerHTML = `<p class="text-2xl">Lucro Líquido: <span class="font-bold text-green-600">R$ 5.362,50</span></p><p class="text-lg">Margem Líquida: <span class="font-bold">18,3%</span></p>`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
