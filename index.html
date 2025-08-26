@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano de Negócio Interativo - JOJO BURGER</title>
+    <!-- Carregando Tailwind CSS para estilização -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregando Chart.js para os gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Carregando as fontes Poppins e Bebas Neue -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  
+    <!-- Ícones para o cardápio -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
+        /* Estilos customizados para as fontes */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #F8F5F2;
@@ -19,6 +25,7 @@
         h1, h2, h3 {
             font-family: 'Bebas Neue', sans-serif;
         }
+        /* Efeito de transição para a navegação */
         .nav-link {
             transition: color 0.3s, border-bottom-color 0.3s;
             border-bottom: 2px solid transparent;
@@ -27,6 +34,7 @@
             color: #c0392b;
             border-bottom-color: #c0392b;
         }
+        /* Efeito de transição para os botões de cenário */
         .btn-scenario {
             transition: all 0.3s;
         }
@@ -36,6 +44,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        /* Estilo do contêiner do gráfico */
         .chart-container {
             position: relative;
             width: 100%;
@@ -49,6 +58,7 @@
                 height: 350px;
             }
         }
+        /* Estilos do hambúrguer animado (seções) */
         .burger-new {
             position: relative;
             width: 250px;
@@ -111,21 +121,97 @@
             transform: translateY(-20px);
             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         }
+        /* Animação para a mensagem de pedido */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInOut 5s forwards;
+        }
+        .hidden-message {
+            display: none;
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="flex justify-center py-6">
-            <img src="imagens/jojo.jpeg" alt="Logotipo JOJO BURGER" class="rounded-lg">
+    <header class="flex flex-col items-center py-6 px-4">
+        <!-- Logo do JOJO BURGER em SVG -->
+        <svg
+            class="w-24 h-24 mb-2"
+            viewBox="0 0 200 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <!-- Pão de cima -->
+            <path d="M40 70C40 45.1472 60.1472 25 85 25H115C139.853 25 160 45.1472 160 70V80H40V70Z" fill="#F9A825"/>
+            <!-- Gergelim -->
+            <circle cx="60" cy="50" r="5" fill="#FFFFFF"/>
+            <circle cx="100" cy="45" r="5" fill="#FFFFFF"/>
+            <circle cx="140" cy="55" r="5" fill="#FFFFFF"/>
+            <!-- Alface -->
+            <rect x="40" y="80" width="120" height="15" fill="#689F38"/>
+            <!-- Tomate -->
+            <rect x="40" y="95" width="120" height="15" fill="#D32F2F"/>
+            <!-- Hambúrguer -->
+            <rect x="40" y="110" width="120" height="25" fill="#5D4037"/>
+            <!-- Pão de baixo -->
+            <rect x="40" y="135" width="120" height="25" rx="10" ry="10" fill="#F9A825"/>
+        </svg>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-[#c0392b] tracking-wide text-center">
+            JOJO BURGER
+        </h1>
+        <p class="mt-2 text-lg md:text-xl max-w-2xl mx-auto text-gray-600">
+            Plano de Negócio Interativo
+        </p>
     </header>
 
     <main class="container mx-auto px-6 py-12">
 
-        <section class="text-center mb-24">
-            <h2 class="text-6xl md:text-8xl tracking-wide text-gray-800">OUSADIA NA SIMPLICIDADE</h2>
-            <p class="mt-4 text-xl md:text-2xl max-w-3xl mx-auto text-gray-600">O JOJO BURGER redefine a experiência do hambúrguer com uma missão clara: dominar a arte de fazer um único produto com perfeição. Menos é mais quando o foco é 100% na qualidade.</p>
+        <!-- Seção do Cardápio adicionada do código React -->
+        <section id="cardapio" class="mb-24 scroll-mt-20">
+            <h2 class="text-5xl text-center mb-4 tracking-wider">Nosso Cardápio</h2>
+            <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">
+                Ousadia na simplicidade. Focamos em fazer uma única coisa, mas fazê-la com perfeição.
+            </p>
+            <div class="flex items-center justify-center p-4">
+                <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm border border-[#E0E0E0]">
+                    <!-- Item do cardápio -->
+                    <div class="bg-[#FAFAFA] p-6 rounded-2xl border border-[#E0E0E0] shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <h2 class="text-xl font-bold text-gray-800">JOJO BURGUER</h2>
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Ícone de estrela -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <span class="text-sm">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">
+                            Pão d'água crocante, alface americana, tomate, cebola e molho especial do chef.
+                        </p>
+                        <!-- Botão de pedido -->
+                        <button
+                            id="order-button"
+                            class="w-full bg-[#c0392b] text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-[#a12f24] transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#c0392b] focus:ring-opacity-50"
+                        >
+                            Pedir agora
+                        </button>
+                    </div>
+
+                    <!-- Mensagem de confirmação do pedido (inicialmente oculta) -->
+                    <div id="order-message" class="mt-6 flex items-start p-4 bg-green-100 border border-green-300 rounded-xl shadow-md hidden-message">
+                        <!-- Ícone de check -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-green-600 mr-3 mt-1 flex-shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-8.68"/><path d="m9.2 11.2 3 3 5-5"/></svg>
+                        <p class="text-green-800 text-sm font-medium">Pedido recebido! O seu delicioso JOJO BURGUER está a caminho.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Seção do Conceito -->
         <section id="conceito" class="mb-24 scroll-mt-20">
             <h2 class="text-5xl text-center mb-4 tracking-wider">O Conceito: A Obra-Prima</h2>
              <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">A alma do nosso negócio é o produto. O "JOJO Burger" não é apenas um lanche, é o resultado de anos de pesquisa e paixão pela gastronomia. Cada componente foi escolhido e aprimorado para criar uma experiência de sabor inesquecível, com a autenticidade do preparo na churrasqueira.</p>
@@ -172,6 +258,7 @@
             </div>
         </section>
 
+        <!-- Seção da Operação -->
         <section id="operacao" class="mb-24 scroll-mt-20">
             <h2 class="text-5xl text-center mb-4 tracking-wider">A Operação: Eficiência e Qualidade</h2>
             <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">Nossa operação é desenhada para ser enxuta, eficiente e escalável. O foco em um único produto minimiza o desperdício e otimiza o tempo de preparo, garantindo que cada JOJO Burger chegue perfeito ao cliente. Abaixo estão os pilares da nossa cozinha.</p>
@@ -214,6 +301,7 @@
             </div>
         </section>
 
+        <!-- Seção de Investimento -->
         <section id="investimento" class="mb-24 scroll-mt-20">
             <h2 class="text-5xl text-center mb-4 tracking-wider">Investimento Inicial</h2>
             <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">O capital inicial para o JOJO BURGER foi calculado para cobrir os custos de instalação, equipamentos e um capital de giro para os primeiros meses. Esta é a estimativa realista para uma operação segura.</p>
@@ -257,6 +345,7 @@
             </div>
         </section>
 
+        <!-- Seção do Potencial -->
         <section id="potencial" class="mb-24 scroll-mt-20">
             <h2 class="text-5xl text-center mb-4 tracking-wider">O Potencial: Análise Financeira</h2>
             <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">A simplicidade do nosso modelo de negócio se traduz em números sólidos. Com custos controlados e uma margem de lucro saudável, o JOJO BURGER demonstra grande viabilidade financeira. Interaja com os cenários abaixo para explorar nosso potencial de faturamento e a estrutura de custos.</p>
@@ -290,13 +379,14 @@
                         <canvas id="lucratividadeChart"></canvas>
                     </div>
                     <div id="lucro-info" class="text-center mt-4">
-                         <p class="text-2xl">Lucro Líquido: <span class="font-bold text-green-600">R$ 5.362,50</span></p>
-                         <p class="text-lg">Margem Líquida: <span class="font-bold">18,3%</span></p>
+                        <p class="text-2xl">Lucro Líquido: <span class="font-bold text-green-600">R$ 5.362,50</span></p>
+                        <p class="text-lg">Margem Líquida: <span class="font-bold">18,3%</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Seção do Futuro -->
         <section id="futuro" class="scroll-mt-20">
             <h2 class="text-5xl text-center mb-4 tracking-wider">O Futuro: Marketing e Branding</h2>
             <p class="text-center text-lg max-w-4xl mx-auto mb-12 text-gray-600">Nossa presença digital será tão impactante quanto o sabor do nosso hambúrguer. A comunicação será moderna, direta e visualmente atraente para criar desejo e construir uma comunidade de fãs da marca.</p>
@@ -340,7 +430,25 @@
                 });
             });
 
-            // --- Data ---
+            // --- Lógica do Botão de Pedido Adicionada ---
+            const orderButton = document.getElementById('order-button');
+            const orderMessage = document.getElementById('order-message');
+
+            orderButton.addEventListener('click', function() {
+                // Exibe a mensagem de confirmação com a animação
+                orderMessage.classList.remove('hidden-message');
+                orderMessage.classList.add('animate-fade-in-up');
+
+                // Esconde a mensagem depois de 5 segundos (duração da animação)
+                setTimeout(() => {
+                    orderMessage.classList.remove('animate-fade-in-up');
+                    orderMessage.classList.add('hidden-message');
+                }, 5000);
+            });
+            // ---------------------------------------------
+
+
+            // --- Data para os Gráficos ---
             const faturamentoData = {
                 conservador: { pedidos: 15, faturamento: 14625.00 },
                 realista: { pedidos: 30, faturamento: 29250.00 },
@@ -359,10 +467,10 @@
                 backgroundColor: ['#27ae60', '#E07A5F', '#3D405B']
             };
 
-            // --- Chart.js Instances ---
+            // --- Instâncias do Chart.js ---
             let faturamentoChart, lucratividadeChart;
 
-            // Faturamento Chart
+            // Gráfico de Faturamento
             const faturamentoCtx = document.getElementById('faturamentoChart').getContext('2d');
             faturamentoChart = new Chart(faturamentoCtx, {
                 type: 'bar',
@@ -409,7 +517,7 @@
                 }
             });
 
-            // Lucratividade Chart
+            // Gráfico de Lucratividade
             const lucratividadeCtx = document.getElementById('lucratividadeChart').getContext('2d');
             function createLucratividadeChart(chartData) {
                 if(lucratividadeChart) {
@@ -454,8 +562,7 @@
             }
             createLucratividadeChart(lucroMensalData);
 
-
-            // --- Interactivity ---
+            // --- Interatividade ---
             const faturamentoButtons = document.querySelectorAll('#potencial .grid:first-child .btn-scenario');
             const lucroButtons = document.querySelectorAll('#potencial .grid:last-child .btn-scenario');
             const faturamentoInfo = {
@@ -464,7 +571,7 @@
             };
             const lucroInfoDiv = document.getElementById('lucro-info');
 
-            // Faturamento buttons logic
+            // Lógica dos botões de faturamento
             faturamentoButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     faturamentoButtons.forEach(btn => btn.classList.remove('active'));
@@ -478,7 +585,7 @@
                 });
             });
 
-            // Lucratividade buttons logic
+            // Lógica dos botões de lucratividade
             lucroButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     lucroButtons.forEach(btn => btn.classList.remove('active'));
